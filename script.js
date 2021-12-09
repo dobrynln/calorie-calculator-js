@@ -1,4 +1,4 @@
-const result = document.querySelector('.calculating__result');
+const result = document.querySelector('.calculating__result span');
 let sex, height, weight, age, ratio;
 
 function calcRes() {
@@ -13,7 +13,7 @@ function calcRes() {
     }
 }
 calcRes();
-function determineCalorie (parentSelector, activeClass) {
+function determineStaticInfo (parentSelector, activeClass) {
     const elements = document.querySelectorAll(parentSelector);
 
     elements.forEach(elem => {
@@ -33,5 +33,33 @@ function determineCalorie (parentSelector, activeClass) {
         })
     })
 }
-determineCalorie('#gender div', 'calculating__choose-item_active')
-determineCalorie('.calculating__choose_big div', 'calculating__choose-item_active')
+determineStaticInfo('#gender div', 'calculating__choose-item_active')
+determineStaticInfo('.calculating__choose_big div', 'calculating__choose-item_active')
+
+function determineDynamicInput(selector) {
+    const input = document.querySelector(selector)
+
+    input.addEventListener('input', () => {
+        if(input.value.match(/\D/g)) {
+            input.style.border = "1px solid red";
+        } else {
+            input.style.border = "none";
+        }
+        switch(input.getAttribute('id')) {
+            case 'height':
+                height = +input.value;
+                break;
+            case 'weight':
+                weight = +input.value;
+                break;
+            case 'age': 
+                age = +input.value;
+                console.log(age)
+                break;
+        }
+        calcRes();
+    })
+}
+determineDynamicInput('#height')
+determineDynamicInput('#weight')
+determineDynamicInput('#age')

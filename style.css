@@ -19,6 +19,16 @@
 .calculating__subtitle:first-child {
     margin-top: 0;
 }
+.calculating #gender:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: block;
+    width: 16px;
+    height: 16px;
+    background: url(img/switch.svg) center center/cover no-repeat;
+}
 .calculating__choose {
     position: relative;
     display: flex;
